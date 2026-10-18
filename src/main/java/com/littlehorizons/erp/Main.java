@@ -1,53 +1,60 @@
 package com.littlehorizons.erp;
 
+import com.littlehorizons.erp.controller.EnrollmentController;
+import com.littlehorizons.erp.controller.GuardianController;
+import com.littlehorizons.erp.controller.StudentController;
+import com.littlehorizons.erp.dao.EnrollmentDao;
+import com.littlehorizons.erp.dao.GuardianDao;
+import com.littlehorizons.erp.dao.JdbcEnrollmentDao;
+import com.littlehorizons.erp.dao.JdbcGuardianDao;
+import com.littlehorizons.erp.dao.JdbcStudentDao;
+import com.littlehorizons.erp.dao.StudentDao;
 import com.littlehorizons.erp.util.AppLogger;
 import com.littlehorizons.erp.util.ConsoleUtil;
 import com.littlehorizons.erp.util.DatabaseConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.littlehorizons.erp.view.EnrollmentView;
+import com.littlehorizons.erp.view.GuardianView;
+import com.littlehorizons.erp.view.MainMenuView;
+import com.littlehorizons.erp.view.StudentView;
 
 /**
  * Application entry point.
  *
- * PHASE 1: it only checks that the database connection works.
- * In the next phases this class will start the main menu.
+ * It checks the database connection and then builds the objects of every layer
+ * (DAO -> controller -> view) and starts the main menu.
+ * Each object receives the ones it needs in its constructor (dependency injection).
  */
 public class Main {
 
-    private static final String DATABASE_NAME = "erp_little_horizons";
-
     public static void main(String[] args) {
-        ConsoleUtil.printTitle("ERP Colegio Little Horizons");
-        System.out.println("Checking the database connection...");
-
         try {
-            DatabaseConnection database = DatabaseConnection.getInstance();
-            if (!database.testConnection()) {
-                ConsoleUtil.printError("Could not connect to MySQL. Check database.properties "
-                        + "and make sure MySQL is running. Details in error_log.txt");
+            if (!DatabaseConnection.getInstance().testConnection()) {
+                ConsoleUtil.printError("No se pudo conectar con MySQL. Revise database.properties y "
+                        + "confirme que MySQL esté encendido. Detalles en error_log.txt");
                 return;
             }
-            ConsoleUtil.printSuccess("Connection OK.");
-            ConsoleUtil.printInfo("Tables found in " + DATABASE_NAME + ": " + countTables());
-        } catch (SQLException e) {
-            AppLogger.error("Error while counting tables", e);
-            ConsoleUtil.printError("Could not read the database. Details in error_log.txt");
         } catch (IllegalStateException e) {
             AppLogger.error("Configuration error", e);
-            ConsoleUtil.printError(e.getMessage());
+            ConsoleUtil.printError("No se pudo leer database.properties. Detalles en error_log.txt");
+            return;
         }
-    }
 
-    private static int countTables() throws SQLException {
-        String sql = "SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA = ?";
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, DATABASE_NAME);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next() ? resultSet.getInt(1) : 0;
-            }
-        }
+        // Data access layer
+        StudentDao studentDao = new JdbcStudentDao();
+        GuardianDao guardianDao = new JdbcGuardianDao();
+        EnrollmentDao enrollmentDao = new JdbcEnrollmentDao();
+
+        // Business layer
+        StudentController studentController = new StudentController(studentDao, guardianDao);
+        GuardianController guardianController = new GuardianController(guardianDao, studentDao);
+        EnrollmentController enrollmentController = new EnrollmentController(enrollmentDao, studentDao);
+
+        // Presentation layer
+        GuardianView guardianView = new GuardianView(guardianController, studentController);
+        EnrollmentView enrollmentView = new EnrollmentView(enrollmentController, studentController);
+        StudentView studentView = new StudentView(studentController, enrollmentController,
+                guardianView, enrollmentView);
+
+        new MainMenuView(studentView).run();
     }
 }

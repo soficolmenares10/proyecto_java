@@ -47,4 +47,3 @@ public final class Validator {
                 && grade.compareTo(MAX_GRADE) <= 0;
     }
 }
-
