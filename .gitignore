@@ -1,0 +1,4 @@
+   target/
+   nbproject/private/
+   *.class
+   error_log.txt
