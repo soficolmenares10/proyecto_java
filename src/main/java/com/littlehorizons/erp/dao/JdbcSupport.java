@@ -7,8 +7,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Types;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,5 +116,13 @@ final class JdbcSupport {
 
     static LocalDate toLocalDate(Date date) {
         return date == null ? null : date.toLocalDate();
+    }
+
+    static void setTime(PreparedStatement statement, int index, LocalTime value) throws SQLException {
+        statement.setTime(index, Time.valueOf(value));
+    }
+
+    static LocalTime toLocalTime(Time time) {
+        return time == null ? null : time.toLocalTime();
     }
 }

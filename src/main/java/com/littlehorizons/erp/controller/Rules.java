@@ -1,6 +1,7 @@
 package com.littlehorizons.erp.controller;
 
 import com.littlehorizons.erp.util.Validator;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -41,6 +42,13 @@ final class Rules {
     static void optionalEmail(String value, String label) {
         if (value != null && !Validator.isValidEmail(value)) {
             throw new BusinessException(label + " no es un correo válido.");
+        }
+    }
+
+    static void requireAcademicYear(int year) {
+        int maxYear = LocalDate.now().getYear() + 1;
+        if (year < 2000 || year > maxYear) {
+            throw new BusinessException("El año académico debe estar entre 2000 y " + maxYear + ".");
         }
     }
 }

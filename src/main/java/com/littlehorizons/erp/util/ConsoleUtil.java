@@ -2,6 +2,7 @@ package com.littlehorizons.erp.util;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
@@ -214,6 +215,38 @@ public final class ConsoleUtil {
             } catch (DateTimeParseException e) {
                 printError("Fecha inválida. Use el formato aaaa-mm-dd, por ejemplo 2026-03-15.");
             }
+        }
+    }
+
+    /**
+     * Reads a time typed as HH:mm in 24-hour format (for example 07:30 or 14:00).
+     */
+    public static LocalTime readTime(String prompt) {
+        while (true) {
+            System.out.print(prompt + " (HH:mm, formato 24 horas): ");
+            String input = SCANNER.nextLine().trim();
+            try {
+                return LocalTime.parse(input);
+            } catch (DateTimeParseException e) {
+                printError("Hora inválida. Use el formato HH:mm, por ejemplo 07:30 o 14:00.");
+            }
+        }
+    }
+
+    /**
+     * Reads a document number or returns null if the user just presses ENTER.
+     */
+    public static String readOptionalDocument(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String input = SCANNER.nextLine().trim();
+            if (input.isEmpty()) {
+                return null;
+            }
+            if (Validator.isValidDocument(input)) {
+                return input;
+            }
+            printError("Documento inválido. Use de 5 a 20 letras o números, sin puntos ni espacios.");
         }
     }
 

@@ -2,8 +2,12 @@ package com.littlehorizons.erp.view;
 
 import com.littlehorizons.erp.controller.BusinessException;
 import com.littlehorizons.erp.dao.DataAccessException;
+import com.littlehorizons.erp.model.AcademicRecord;
+import com.littlehorizons.erp.model.SubjectEnrollment;
 import com.littlehorizons.erp.util.AppLogger;
 import com.littlehorizons.erp.util.ConsoleUtil;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.function.Supplier;
 
 /**
@@ -49,5 +53,21 @@ public abstract class BaseView {
 
     protected static void printLine(String label, String value) {
         System.out.printf("  %-26s %s%n", label + ":", show(value));
+    }
+
+    /** Asks for an academic year between 2000 and next year. */
+    protected static int readAcademicYear() {
+        int currentYear = LocalDate.now().getYear();
+        return ConsoleUtil.readInt("Año académico (por ejemplo " + currentYear + "): ", 2000, currentYear + 1);
+    }
+
+    /** Asks for a period: I to IV, and also "Final" when includeFinal is true. */
+    protected static String readPeriod(boolean includeFinal) {
+        return ConsoleUtil.readChoice("Período académico",
+                includeFinal ? AcademicRecord.PERIODS : SubjectEnrollment.PERIODS);
+    }
+
+    protected static String show(BigDecimal value) {
+        return value == null ? "-" : value.toPlainString();
     }
 }

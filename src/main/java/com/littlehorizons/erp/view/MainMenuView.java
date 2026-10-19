@@ -10,9 +10,13 @@ public class MainMenuView extends BaseView {
     private static final int BOX_WIDTH = 46;
 
     private final StudentView studentView;
+    private final AcademicMenuView academicMenuView;
+    private final ProfessorView professorView;
 
-    public MainMenuView(StudentView studentView) {
+    public MainMenuView(StudentView studentView, AcademicMenuView academicMenuView, ProfessorView professorView) {
         this.studentView = studentView;
+        this.academicMenuView = academicMenuView;
+        this.professorView = professorView;
     }
 
     public void run() {
@@ -22,7 +26,9 @@ public class MainMenuView extends BaseView {
             int option = ConsoleUtil.readInt("Seleccione una opción: ", 1, 8);
             switch (option) {
                 case 1 -> studentView.run();
-                case 2, 3, 4, 5, 6, 7 -> {
+                case 2 -> academicMenuView.run();
+                case 3 -> professorView.run();
+                case 4, 5, 6, 7 -> {
                     ConsoleUtil.printInfo("Este módulo se implementará en las próximas fases del proyecto.");
                     ConsoleUtil.pause();
                 }
