@@ -13,7 +13,7 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
- * Console screens for enrollments (matrículas).
+ * Console screens for school-year enrollments.
  */
 public class EnrollmentView extends BaseView {
 

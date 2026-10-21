@@ -24,3 +24,48 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at com.littlehorizons.erp.util.DatabaseConnection.getConnection(DatabaseConnection.java:65)
 	at com.littlehorizons.erp.util.DatabaseConnection.testConnection(DatabaseConnection.java:72)
 	at com.littlehorizons.erp.Main.main(Main.java:72)
+[2026-10-20 23:11:26] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)
+[2026-10-20 23:14:28] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)
+[2026-10-20 23:21:49] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)
+[2026-10-20 23:24:47] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)
+[2026-10-20 23:32:29] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)
+[2026-10-20 23:34:29] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)
+[2026-10-20 23:45:43] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)
+[2026-10-20 23:51:53] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)
+[2026-10-20 23:57:12] ERROR - Configuration error
+java.lang.IllegalStateException: File database.properties was not found in src/main/resources
+	at com.littlehorizons.erp.util.DatabaseConnection.<init>(DatabaseConnection.java:34)
+	at com.littlehorizons.erp.util.DatabaseConnection.getInstance(DatabaseConnection.java:56)
+	at com.littlehorizons.erp.Main.main(Main.java:110)

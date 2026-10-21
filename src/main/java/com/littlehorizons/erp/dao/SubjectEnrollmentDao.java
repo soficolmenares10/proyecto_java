@@ -4,7 +4,7 @@ import com.littlehorizons.erp.model.SubjectEnrollment;
 import java.util.List;
 import java.util.Optional;
 
-/** Data access operations for the enrollment of students in subjects (por período). */
+/** Data access operations for the enrollment of students in subjects (period by period). */
 public interface SubjectEnrollmentDao {
 
     /**

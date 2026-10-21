@@ -286,7 +286,7 @@ public final class ConsoleUtil {
     }
 
     /**
-     * Asks a yes/no question. Accepts s (sí) and n (no).
+     * Asks a yes/no question. Accepts s (yes) and n (no).
      */
     public static boolean confirm(String prompt) {
         while (true) {

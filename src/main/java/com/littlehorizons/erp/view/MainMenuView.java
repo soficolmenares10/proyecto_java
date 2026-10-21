@@ -13,13 +13,20 @@ public class MainMenuView extends BaseView {
     private final AcademicMenuView academicMenuView;
     private final ProfessorView professorView;
     private final ExtracurricularMenuView extracurricularMenuView;
+    private final FinancialMenuView financialMenuView;
+    private final ResourceMenuView resourceMenuView;
+    private final ReportView reportView;
 
     public MainMenuView(StudentView studentView, AcademicMenuView academicMenuView, ProfessorView professorView,
-                        ExtracurricularMenuView extracurricularMenuView) {
+                        ExtracurricularMenuView extracurricularMenuView, FinancialMenuView financialMenuView,
+                        ResourceMenuView resourceMenuView, ReportView reportView) {
         this.studentView = studentView;
         this.academicMenuView = academicMenuView;
         this.professorView = professorView;
         this.extracurricularMenuView = extracurricularMenuView;
+        this.financialMenuView = financialMenuView;
+        this.resourceMenuView = resourceMenuView;
+        this.reportView = reportView;
     }
 
     public void run() {
@@ -32,10 +39,9 @@ public class MainMenuView extends BaseView {
                 case 2 -> academicMenuView.run();
                 case 3 -> professorView.run();
                 case 4 -> extracurricularMenuView.run();
-                case 5, 6, 7 -> {
-                    ConsoleUtil.printInfo("Este módulo se implementará en las próximas fases del proyecto.");
-                    ConsoleUtil.pause();
-                }
+                case 5 -> financialMenuView.run();
+                case 6 -> resourceMenuView.run();
+                case 7 -> reportView.run();
                 default -> exit = true;
             }
         }

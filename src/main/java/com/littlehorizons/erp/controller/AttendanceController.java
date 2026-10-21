@@ -47,7 +47,7 @@ public class AttendanceController {
 
     /**
      * Registers the attendance of a whole class. Every enrolled student is marked "Presente"
-     * except the ones listed in {@code exceptions} (student id -> Ausente, Tardanza or Excusa Médica).
+     * except the ones listed in {@code exceptions} (student id -> Ausente, Tardanza or Excusa Medica).
      *
      * @return how many students were saved with each status
      */
@@ -99,7 +99,7 @@ public class AttendanceController {
         return attendanceDao.findByStudent(studentId, from, to);
     }
 
-    /** How many records there are of each status (in the order Presente, Ausente, Tardanza, Excusa Médica). */
+    /** How many records there are of each status (in the order Presente, Ausente, Tardanza, Excusa Medica). */
     public Map<String, Long> countByStatus(List<Attendance> attendances) {
         Map<String, Long> counts = new LinkedHashMap<>();
         for (String status : Attendance.STATUSES) {

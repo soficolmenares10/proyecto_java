@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-/** Data access operations for grades (registros académicos). */
+/** Data access operations for grades (academic records). */
 public interface AcademicRecordDao {
 
     /** @return the generated record id */

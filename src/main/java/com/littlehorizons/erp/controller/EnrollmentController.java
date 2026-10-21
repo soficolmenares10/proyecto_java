@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Business logic for enrollments (matrículas).
+ * Business logic for school-year enrollments.
  */
 public class EnrollmentController {
 
